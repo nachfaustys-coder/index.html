@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>El peso de la Corona: Cataluña, 1626-1641</title>
+<style>
+:root{--bg:#e8ebef;--card:#f7f8fa;--ink:#1b2a41;--mute:#56627a;--line:#c3cad6;--gold:#a97a14;--red:#9b2b2f;--green:#2f6b4f;--bar:#d5dae3;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#131a27;--card:#1c2638;--ink:#e8ebf2;--mute:#9aa6bd;--line:#33415b;--gold:#e0b04a;--red:#e8767a;--green:#6fc29c;--bar:#2a3650}}
+:root[data-theme="dark"]{--bg:#131a27;--card:#1c2638;--ink:#e8ebf2;--mute:#9aa6bd;--line:#33415b;--gold:#e0b04a;--red:#e8767a;--green:#6fc29c;--bar:#2a3650}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.55;font-size:17px}
+main{max-width:640px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:2rem;line-height:1.15;margin:0 0 12px;font-weight:700}
+h2{font-size:1.35rem;line-height:1.25;margin:4px 0 8px}
+p{margin:0 0 12px}
+.mute{color:var(--mute);font-size:.92rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px;margin-bottom:14px}
+.year{display:inline-block;border-left:4px solid var(--gold);padding-left:8px;font-weight:700;color:var(--gold);margin-bottom:4px}
+.meters{display:grid;gap:8px;margin-bottom:16px}
+.m{display:grid;grid-template-columns:118px 1fr 44px;align-items:center;gap:8px;font-size:.88rem}
+.bar{height:10px;background:var(--bar);border-radius:5px;overflow:hidden}
+.fill{height:100%;background:var(--ink);transition:width .7s ease}
+.val{text-align:right;font-variant-numeric:tabular-nums}
+.d{font-weight:700}.up{color:var(--green)}.dn{color:var(--red)}
+button{font:inherit;color:inherit;cursor:pointer}
+.opt{display:flex;gap:12px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px;margin-bottom:10px;min-height:56px}
+.opt:hover,.opt:focus-visible{border-color:var(--gold);outline:2px solid var(--gold);outline-offset:1px}
+.opt b{flex:none;width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-size:.85rem}
+.go{background:var(--ink);color:var(--bg);border:0;border-radius:8px;padding:14px 22px;font-weight:700;min-height:48px;width:100%}
+.go:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.prog{display:flex;gap:6px;margin-bottom:14px}
+.prog i{flex:1;height:4px;border-radius:2px;background:var(--bar)}
+.prog i.on{background:var(--gold)}
+.score{font-size:2.6rem;font-weight:700;color:var(--gold);line-height:1}
+.rev{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
+.tag{font-weight:700}
+.best{color:var(--green)}.bad{color:var(--red)}
+.adv{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}.pt{width:44px;height:44px;flex:none}
+.bub{background:var(--card);border:1px solid var(--line);border-radius:4px 12px 12px 12px;padding:8px 12px;font-size:.92rem}
+.bub b{display:block;font-size:.8rem;color:var(--mute)}
+.chips{display:inline-flex;gap:4px;margin-left:auto;align-self:center}
+.chip{width:22px;height:22px;border-radius:50%;color:#fff;font-size:.72rem;font-weight:700;display:grid;place-items:center}
+header{display:flex;justify-content:space-between;align-items:center;max-width:640px;margin:0 auto;padding:10px 16px 0;font-weight:700;color:var(--mute)}
+.lock{opacity:.6;cursor:not-allowed}.note{border-left:3px solid var(--gold);padding-left:10px;margin:0 0 10px;font-size:.9rem}.note b{color:var(--gold)}
+#app>*{animation:fd .35s ease both}@keyframes fd{from{opacity:0;transform:translateY(6px)}}
+@media (prefers-reduced-motion:reduce){#app>*{animation:none}.fill{transition:none}}
+</style>
+</head>
+<body>
+<header><span>El peso de la Corona</span></header>
+<main id="app"></main>
+<script>
+var NAMES=["Lealtad catalana","Tesoro real","Autoridad regia"];
+var R=[
+{y:"1626",t:"La Unión de Armas",s:"El conde-duque de Olivares quiere que todos los reinos aporten soldados y dinero para la guerra. Cataluña tiene constituciones propias que limitan lo que el rey puede exigir.",o:[
+{l:"Exigir soldados y dinero por decreto.",p:5,d:[-20,15,-5],e:"Un decreto violaba las constituciones: en Cataluña el rey gobernaba con pacto, no por mandato. Se ganó dinero a corto plazo y se perdió confianza."},
+{l:"Convocar Cortes y negociar una contribución.",p:25,d:[5,5,5],e:"Es la lógica del Estado Compuesto: el rey pide, el reino concede y las leyes propias se respetan."},
+{l:"Renunciar y pedírselo todo a Castilla.",p:15,d:[10,-10,-5],e:"Cataluña queda tranquila, pero Castilla carga con todo el peso y la Corona se queda sin recursos."}]},
+{y:"1626",t:"Cortes estancadas",s:"Los catalanes ofrecen pagar solo si el rey confirma sus privilegios y reparte cargos entre su élite. El tiempo apremia.",o:[
+{l:"Cerrar las Cortes y cobrar por otras vías.",p:5,d:[-15,10,-5],e:"Las Cortes de 1626 terminaron sin acuerdo. La Corona obtuvo algo, pero la desconfianza quedó sembrada."},
+{l:"Dar cargos y mercedes a cambio de un subsidio.",p:25,d:[10,5,5],e:"Intercambiar mercedes por servicios era la forma habitual de pactar con las élites del reino."},
+{l:"Ceder todo sin pedir nada.",p:15,d:[10,-5,-10],e:"Se gana afecto, pero el rey debilita su autoridad sin obtener recursos a cambio."}]},
+{y:"1635-1639",t:"La guerra con Francia",s:"Cataluña es frontera de guerra. Los soldados del rey llegan y necesitan dónde alojarse y qué comer.",o:[
+{l:"Alojar a las tropas en casas particulares, sin pagar.",p:5,d:[-20,10,-5],e:"Los alojamientos forzosos provocaron abusos y odio hacia los soldados. La población dejó de ver al ejército como suyo."},
+{l:"Respetar las constituciones, pagar y mantener la disciplina.",p:25,d:[10,-5,10],e:"Cuesta más, pero la Corona conserva su legitimidad y su autoridad se apoya en la ley."},
+{l:"Levantar tropas catalanas con mandos catalanes.",p:15,d:[10,-5,-5],e:"Da confianza al reino, aunque el rey pierde parte del control militar."}]},
+{y:"1640",t:"El Corpus de Sangre",s:"Segadores sublevados asesinan al virrey en Barcelona. La Diputación del General dirige la protesta y el reino está en tensión.",o:[
+{l:"Reprimir militarmente la revuelta.",p:5,d:[-30,-15,-10],e:"La represión empujó a la Diputación hacia la protección de Francia. Fue el camino hacia la separación."},
+{l:"Negociar con la Diputación y retirar las tropas.",p:25,d:[15,-5,5],e:"Abre una salida pactada: la Corona cede en lo militar, pero mantiene al reino dentro de la monarquía."},
+{l:"Dar un perdón general sin condiciones.",p:15,d:[10,0,-15],e:"Calma los ánimos, pero deja a la Corona sin autoridad para volver a exigir nada."}]},
+{y:"1639-1640",t:"La caída de Salses",s:"Los franceses han tomado la fortaleza de Salses, en el Rosellón. La Corona necesita soldados deprisa y Cataluña duda.",o:[
+{l:"Reclutar por la fuerza en las poblaciones.",p:5,d:[-20,5,-5],t:-1,e:"Es barato y rápido, pero viola las constituciones y deja rencor."},
+{l:"Pedir a la Generalitat que levante y pague tropas.",p:25,d:[5,-5,5],t:1,n:1,e:"El reino se implica en su propia defensa y el pacto se mantiene, aunque la Corona controla menos."},
+{l:"Traer tropas de otros territorios, pagadas por la Corona.",p:15,d:[-10,-15,10],m:1,e:"Es eficaz, pero muy caro, y soldados de fuera tensan al reino."}]},
+{y:"1640",t:"Los abusos de las tropas",s:"El ejército sigue en Cataluña y los incidentes se multiplican: saqueos, incendios, muertes. Alguien debe responder.",o:[
+{l:"Castigar a los pueblos para imponer disciplina.",p:5,d:[-25,5,5],t:-2,e:"Se refuerza la obediencia a corto plazo, pero se castiga a las víctimas."},
+{l:"Investigar a los soldados culpables y pagar los daños.",p:25,d:[10,-10,0],t:1,n:1,e:"Responde al agravio y repara la confianza, aunque cuesta dinero y molesta al ejército."},
+{l:"Alejar a las tropas a cuarteles fuera de Cataluña.",p:15,d:[5,-10,-10],m:1,e:"Calma los pueblos, pero deja la frontera menos protegida y sin culpables."}]},
+{y:"Primavera de 1640",t:"El arresto de Tamarit",s:"El virrey ha encarcelado a Francesc de Tamarit, diputado de la Generalitat. Campesinos se acercan a Barcelona para liberarlo.",o:[
+{l:"Mantenerlo preso y reforzar la guardia.",p:5,d:[-20,0,5],t:-1,e:"La Corona muestra firmeza, pero convierte a un diputado en símbolo."},
+{l:"Liberarlo y abrir negociaciones con la Diputación.",p:25,d:[10,-5,-10],t:1,n:1,e:"Cede autoridad inmediata para rebajar la tensión y reabrir el diálogo."},
+{l:"Trasladarlo en secreto fuera de la ciudad.",p:15,d:[-5,0,-5],e:"Evita el tumulto inmediato, pero parece un secuestro."}]},
+{y:"Verano de 1640",t:"La crisis tras el Corpus",s:"El virrey ha muerto. La Generalitat, presidida por Pau Claris, pide retirar las tropas, y en Madrid se debate cómo responder.",o:[
+{l:"Preparar un ejército para restaurar la autoridad.",p:5,d:[-20,-10,10],t:-1,e:"Impone respeto, pero confirma los temores de una invasión."},
+{l:"Negociar con la Diputación y suspender los alojamientos.",p:25,d:[10,-5,0],t:1,n:1,e:"Abre una salida pactada, aunque parece debilidad ante el asesinato del virrey."},
+{l:"Ofrecer cargos y mercedes a los sectores moderados.",p:15,d:[0,-10,5],m:1,e:"Intenta dividir a la élite catalana, pero cuesta dinero y puede parecer soborno."}]},
+{y:"Otoño de 1640",t:"El pacto con Francia",s:"La Generalitat busca ayuda militar en Francia. La Corona aún puede intentar evitar la alianza.",o:[
+{l:"Declarar traidores a los diputados y cerrar toda negociación.",p:5,d:[-20,-5,10],t:-1,e:"Es una respuesta dura que deja a los moderados sin salida."},
+{l:"Ofrecer perdón y confirmar las constituciones.",p:25,d:[15,-10,-5],t:1,n:1,e:"Cede mucho, pero disputa a Francia la iniciativa política."},
+{l:"Cerrar pasos y puertos para impedir la alianza.",p:15,d:[-10,-10,10],m:1,e:"Gana tiempo, pero cuesta recursos y aísla aún más al reino."}]},
+{y:"Enero de 1641",t:"La ruptura",s:"Cataluña se proclama bajo protección francesa y un ejército real avanza sobre Barcelona.",o:[
+{l:"Atacar de inmediato para recuperar Barcelona.",p:5,d:[-15,-15,5],t:-1,e:"Apuesta todo a una victoria rápida y arriesga la derrota."},
+{l:"Defender las plazas del sur y ofrecer amnistía a quien vuelva a la obediencia.",p:25,d:[10,-5,5],t:1,n:1,e:"Limita la guerra y deja abierta la reconciliación."},
+{l:"Mantener guarniciones y esperar refuerzos de Castilla.",p:15,d:[0,-10,-5],m:1,e:"Evita una ofensiva costosa, pero cede la iniciativa."}]}];
+var F=[
+{n:"Monarquía unida",c:"var(--green)",x:"Tus decisiones respetaron el pacto entre el rey y el reino. Eso es el Estado Compuesto: varios reinos bajo un mismo monarca, cada uno con sus leyes e instituciones. La unión duró porque se negoció, no porque se impuso."},
+{n:"Unión frágil",c:"var(--gold)",x:"Cataluña se queda, pero con desconfianza. Hubo decisiones que tensaron el pacto, y cada crisis futura volverá a poner a prueba la unión."},
+{n:"Revuelta general",c:"var(--red)",x:"Cedes tanto o gobiernas tan mal que la Corona se queda sin dinero ni autoridad. Otros reinos y nobles ven la debilidad y se alzan. Un Estado Compuesto no sobrevive solo con concesiones."},
+{n:"Separación",c:"var(--red)",x:"Imponer sin pactar rompió la monarquía: Cataluña buscó la protección de Francia, como ocurrió entre 1640 y 1641. Portugal también se alzó en 1640."}];
+var ADV=[
+{n:"Conde-duque de Olivares",r:"Corona",c:"#6b1f24",h:"#1b1b22",x:'<path d="M18 15q6-8 12 0z" fill="#2a1a12"/><path d="M20 24q4 5 8 0" stroke="#2a1a12" fill="none"/>',w:["Decisión firme. Así se sirve al rey.","No era lo que aconsejé. Lo recordaré."]},
+{n:"Diputado catalán",r:"Diputación",c:"#a97a14",h:"#7a1f23",x:'<path d="M16 17q8-9 16 0z" fill="#4a3a2a"/>',w:["Sabia decisión. El reino lo recordará.","Nos habéis decepcionado."]},
+{n:"Banquero genovés",r:"Finanzas",c:"#2f6b4f",h:"#222e4a",x:'<rect x="15" y="9" width="18" height="6" rx="2" fill="#222"/>',w:["Las cuentas cuadran.","Mis cuentas no."]}];
+var REC=[
+{k:[0,1,0],t:["La guerra no espera. Un reino que no aporta no es parte de la Corona.","Pedid, pero en Cortes. Nuestras constituciones también son ley del rey.","Necesito dinero seguro y rápido. Un decreto lo asegura."]},
+{k:[0,2,1],t:["Si no pagan, cobremos. Las Cortes ya nos han hecho perder demasiado tiempo.","Confirmad nuestros privilegios primero. Después hablaremos de dinero.","Un subsidio a cambio de mercedes sale barato. Aceptad el trato."]},
+{k:[0,2,1],t:["Los soldados defienden a Cataluña. Que la tierra los sostenga.","Que los mandos sean catalanes. Conocemos nuestra tierra y a nuestra gente.","Pagad el alojamiento: un soldado descontento cuesta más que su sueldo."]},
+{k:[0,1,2],t:["Un virrey muerto exige castigo. La Corona no puede parecer débil.","Hablad con la Diputación. Aún hay camino sin sangre.","Cualquier acuerdo que calme la ciudad. Las guerras no pagan deudas."]}];
+REC.push({k:[2,1,0],t:["La Corona tiene tercios: que vengan.","Que nuestra Generalitat levante y mande sus tropas.","Reclutar a la fuerza es lo más barato."]},{k:[0,1,2],t:["Un ejército indisciplinado no se arregla con sermones.","Castigad a los culpables y reparad los daños.","Alejad a las tropas antes de que cueste más."]},{k:[0,1,2],t:["Un diputado que desafía al virrey debe responder.","Soltad a Tamarit y abrid la negociación.","Cuanto antes se calme la ciudad, mejor para los negocios."]},{k:[0,1,2],t:["Es hora de un ejército, no de papeles.","Hablad con la Diputación: aún hay camino.","Dividir a la élite sale más barato que la guerra."]},{k:[2,1,1],t:["Cerrad pasos y puertos: que Francia no entre.","Confirmad las constituciones y conservaréis Cataluña.","Una guerra con Francia en casa arruinaría cualquier deuda."]},{k:[0,1,2],t:["Barcelona debe caer cuanto antes.","Defended lo que queda y abrid el camino a los moderados.","Mantened guarniciones: no hay dinero para otra ofensiva."]});
+var PM=[0,1,2,4,5,6,3,7,8,9];R=PM.map(function(i){return R[i]});REC=PM.map(function(i){return REC[i]});
+var X={"La Unión de Armas":[{t:-1},{t:1,n:1},{}],"Cortes estancadas":[{t:-1},{t:1,n:1},{}],"La guerra con Francia":[{t:-1},{t:1,n:1},{m:1}],"El Corpus de Sangre":[{t:-2},{t:1,n:1},{}]};
+R.forEach(function(r){(X[r.t]||[]).forEach(function(m,k){Object.assign(r.o[k],m)})});
+var H={"La Unión de Armas":"Hacia 1625-1626 Olivares propuso la Unión de Armas, un reparto de soldados entre los reinos de la monarquía. Cataluña defendía que sus constituciones limitaban esas exigencias.","Cortes estancadas":"Las Cortes catalanas de 1626 terminaron sin acuerdo sobre la Unión de Armas.","La guerra con Francia":"Desde 1635 la monarquía estaba en guerra con Francia y Cataluña pasó a ser frontera. El alojamiento de tropas causó fricciones con la población.","La caída de Salses":"El 19 de julio de 1639 los franceses tomaron Salses. Con soldados reclutados en Cataluña, entre ellos un contingente dirigido por el diputado Francesc de Tamarit, la plaza se recuperó el 6 de enero de 1640.","Los abusos de las tropas":"Tras recuperar Salses, el ejército real se quedó en Cataluña. Hubo graves incidentes con la población, como el saqueo de Palafrugell (1639) y los de Santa Coloma de Farners y Riudarenes (1640).","El arresto de Tamarit":"El virrey, conde de Santa Coloma, encarceló al diputado Francesc de Tamarit. El 22 de mayo de 1640 unos quinientos campesinos entraron en Barcelona para liberarlo.","El Corpus de Sangre":"El 7 de junio de 1640 un tumulto en Barcelona terminó con la muerte del virrey. Las circunstancias exactas de su muerte no están del todo claras.","La crisis tras el Corpus":"Tras el Corpus, la ruptura entre la Generalitat, presidida por Pau Claris, y el gobierno del conde-duque era total. Se temía una invasión castellana y la Generalitat buscó apoyo exterior.","El pacto con Francia":"Pau Claris buscó ayuda militar francesa. El 12 de diciembre de 1640 se firmó en Barcelona un pacto de ayuda militar.","La ruptura":"A mediados de enero de 1641 se proclamó la República Catalana bajo protección francesa y días después se reconoció a Luis XIII como conde de Barcelona. El 26 de enero el ejército franco-catalán venció en Montjuïc. La guerra duró años."};
+function mods(o){var a=[0,0,0],n=[],m=S.m,d=o.d;
+if(o.n&&S.tr<=-2){a[0]-=5;n.push("La desconfianza acumulada dificulta esta negociación (Lealtad −5).")}
+if(o.n&&S.tr>=2){a[0]+=5;n.push("La confianza acumulada facilita el acuerdo (Lealtad +5).")}
+if(m[1]<30&&d[1]<0){a[1]-=5;n.push("Con el Tesoro bajo, la medida sale más cara (Tesoro −5).")}
+if(m[2]<30&&d[2]<0){a[2]-=5;n.push("Con la Autoridad baja, las órdenes encuentran resistencia (Autoridad −5).")}
+if(m[0]<30&&d[0]>0){a[0]-=5;n.push("Con la Lealtad baja, las concesiones valen menos (Lealtad −5).")}
+if(m[0]>=70&&d[1]<0){a[1]+=5;n.push("La buena disposición del reino abarata los costes (Tesoro +5).")}
+return{a:a,n:n}}
+function lk(o){return !!o.m&&S.m[1]<20}
+function sit(){var m=S.m;return (m[0]<30?"El reino desconfía":m[0]>=70?"El reino coopera":"El reino está dividido")+", "+(m[1]<30?"las arcas están casi vacías":m[1]>=70?"hay recursos":"los recursos escasean")+", "+(m[2]<30?"las órdenes se discuten.":m[2]>=70?"la Corona se hace obedecer.":"la obediencia es desigual.")}
+function notes(n,r){return (n.length?'<div class="note"><b>Simulación:</b> '+n.join(" ")+'</div>':'')+'<div class="note"><b>Hecho histórico:</b> '+H[r.t]+'</div>'}
+function pt(a){return '<svg viewBox="0 0 48 48" class="pt" aria-hidden="true"><circle cx="24" cy="24" r="24" fill="'+a.c+'"/><circle cx="24" cy="19" r="8" fill="#e9d3b8"/><path d="M8 44c2-12 10-16 16-16s14 4 16 16z" fill="'+a.h+'"/>'+a.x+'</svg>'}
+function say(a,t){return '<div class="adv">'+pt(a)+'<div class="bub"><b>'+a.n+' · '+a.r+'</b>'+t+'</div></div>'}
+function advHtml(i){return ADV.map(function(a,k){return say(a,REC[i].t[k])}).join("")}
+function chips(i,k){return ADV.filter(function(a,j){return REC[i].k[j]===k}).map(function(a){return '<span class="chip" style="background:'+a.c+'" title="'+a.n+'" aria-label="Lo recomienda '+a.n+'">'+a.n[0]+'</span>'}).join("")}
+function react(i,k){return ADV.map(function(a,j){return say(a,a.w[REC[i].k[j]===k?0:1])}).join("")}
+function backers(i,k){var b=ADV.filter(function(a,j){return REC[i].k[j]===k}).map(function(a){return a.n});return b.length?b.join(", "):"ningún consejero"}
+function fx(d){var n=["Lealtad","Tesoro","Autoridad"],s=d.map(function(v,k){return v?n[k]+" "+(v>0?"+":"")+v:null}).filter(Boolean);return s.length?s.join(", "):"sin cambios"}
+var app=document.getElementById("app"),S;
+function bars(m,dl){return '<div class="meters">'+NAMES.map(function(n,i){var d=dl?dl[i]:0;return '<div class="m"><span>'+n+'</span><div class="bar"><div class="fill" style="width:'+m[i]+'%"></div></div><span class="val">'+m[i]+(d?' <span class="d '+(d>0?'up':'dn')+'">'+(d>0?'+':'')+d+'</span>':'')+'</span></div>'}).join("")+'</div>'}
+function prog(){return '<div class="prog">'+R.map(function(_,i){return '<i class="'+(i<=S.i?'on':'')+'"></i>'}).join("")+'</div>'}
+function start(){S={i:0,m:[50,50,50],pk:[],sc:0,tr:0};intro()}
+function intro(){app.innerHTML='<h1>El peso de la Corona</h1><p class="mute">Cataluña, 1626-1641</p><div class="card"><p>Eres consejero de Felipe IV. La monarquía hispánica reúne reinos con leyes, cortes y privilegios distintos. No es un Estado unitario moderno: cada territorio conserva sus leyes e instituciones. Tu misión: mantener a Cataluña dentro de ella.</p><p>Vas a tomar 10 decisiones entre 1626 y 1641. Cada una mueve tres medidores que empiezan en 50. Al final sabrás qué tan bien conservaste el pacto con el reino.</p><p class="mute">Tus consejeros recomiendan según sus intereses, no según la verdad. Sus diálogos son ilustrativos.</p></div>'+bars(S.m)+'<button class="go" id="b">Comenzar</button>';document.getElementById("b").onclick=round}
+function shuf(a){a=a.map(function(o,i){o.k=i;return o});for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function round(){var r=R[S.i];S.os=shuf(r.o.slice());
+app.innerHTML=prog()+bars(S.m)+'<div class="card"><span class="year">Ronda '+(S.i+1)+' de '+R.length+' · '+r.y+'</span><h2>'+r.t+'</h2><p>'+r.s+'</p><p class="mute">'+sit()+'</p></div>'+advHtml(S.i)+S.os.map(function(o,i){return '<button class="opt'+(lk(o)?' lock':'')+'"'+(lk(o)?' disabled':'')+' data-i="'+i+'"><b>'+"ABC"[i]+'</b><span>'+o.l+(lk(o)?'<br><small class="mute">Bloqueada: el Tesoro está por debajo de 20. Se desbloquea al recuperar recursos.</small>':'')+'</span><span class="chips">'+chips(S.i,o.k)+'</span></button>'}).join("");
+Array.prototype.forEach.call(document.querySelectorAll(".opt"),function(b){b.onclick=function(){pick(+b.dataset.i)}})}
+function pick(i){var r=R[S.i],o0=S.os[i],M=mods(o0),o=Object.assign({},o0,{d:o0.d.map(function(v,k){return v+M.a[k]})}),old=S.m.slice();
+S.m=S.m.map(function(v,k){return Math.max(0,Math.min(100,v+o.d[k]))});S.sc+=o.p;S.pk.push({r:r,o:o,ri:S.i,n:M.n});S.tr=Math.max(-3,Math.min(3,S.tr+(o.t||0)));
+app.innerHTML=prog()+bars(old)+'<div class="card"><span class="year">'+r.y+'</span><h2>'+r.t+'</h2><p class="tag">Elegiste: '+o.l+'</p><p>En la simulación: '+o.e+'</p></div>'+notes(M.n,r)+react(S.i,o.k)+'<button class="go" id="n">'+(S.i<R.length-1?"Siguiente decisión":"Ver el resultado")+'</button>';
+var f=document.querySelectorAll(".fill");setTimeout(function(){f.forEach(function(el,k){el.style.width=S.m[k]+"%"});document.querySelectorAll(".val").forEach(function(v,k){v.innerHTML=S.m[k]+(o.d[k]?' <span class="d '+(o.d[k]>0?'up':'dn')+'">'+(o.d[k]>0?'+':'')+o.d[k]+'</span>':'')})},60);
+document.getElementById("n").onclick=function(){if(S.i<R.length-1){S.i++;round()}else end()}}
+function end(){var s=S.sc,k=s>=210?0:s>=160?1:s>=110?2:3,dg=0;if(k==0&&(S.m[0]<50||S.m[2]<40)){k=1;dg=1}var f=F[k];
+app.innerHTML='<p class="mute">Puntuación final</p><div class="score">'+s+'<span class="mute" style="font-size:1rem"> / 250</span></div><h1 style="color:'+f.c+';margin-top:10px">'+f.n+'</h1><div class="card"><p>'+f.x+'</p>'+(dg?'<p class="mute">Tu puntuación llegaba a «Monarquía unida», pero la Lealtad o la Autoridad finales eran demasiado bajas para una unión plena.</p>':'')+'</div>'+bars(S.m)+'<h2>Tus decisiones</h2>'+S.pk.map(function(p){var b=p.r.o.filter(function(o){return o.p==25})[0];var ok=p.o.p==25;return '<div class="card"><span class="year">'+p.r.y+'</span> <b>'+p.r.t+'</b><p style="margin-top:6px">Tu decisión <span class="'+(ok?'best':'bad')+'">('+p.o.p+' pts)</span>: '+p.o.l+'</p><p class="mute">Efecto: '+fx(p.o.d)+'. Lo respaldó: '+backers(p.ri,p.o.k)+'.'+(p.n.length?' Consecuencias acumuladas: '+p.n.join(' '):'')+'</p>'+(ok?'':'<div class="rev"><p class="best tag">La más equilibrada (25 pts): '+b.l+'</p><p class="mute">'+b.e+'</p></div>')+'</div>'}).join("");window.scrollTo(0,0)}
+start();
+</script>
+</body>
+</html>
